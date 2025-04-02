@@ -2,9 +2,10 @@ CC = c++
 
 CC_FLAGS = -Wall -Werror -Wextra -std=c++98 -g3 -I./includes
 
-NAME = 
+NAME = convert
 
-SOURCES =
+SOURCES =	./srcs/main.cpp \
+			./srcs/ScalarConverter.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
