@@ -2,9 +2,14 @@ CC = c++
 
 CC_FLAGS = -Wall -Werror -Wextra -std=c++98 -g3 -I./includes
 
-NAME = 
+NAME = identifier
 
-SOURCES =
+SOURCES =	./srcs/main.cpp \
+			./srcs/Base.cpp \
+			./srcs/A.cpp \
+			./srcs/B.cpp \
+			./srcs/C.cpp \
+			./srcs/generate_and_identify.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
