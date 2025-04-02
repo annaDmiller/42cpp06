@@ -2,9 +2,10 @@ CC = c++
 
 CC_FLAGS = -Wall -Werror -Wextra -std=c++98 -g3 -I./includes
 
-NAME = 
+NAME = serializer
 
-SOURCES =
+SOURCES =	./srcs/main.cpp \
+			./srcs/Serializer.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
