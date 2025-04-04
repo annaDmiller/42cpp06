@@ -59,11 +59,7 @@ void ScalarConverter::convert(const str& line)
     try
     {
         doub_num = std::atof(line.c_str());
-        if (checkDoubleCorrectConversion(doub_num, line) == false)
-            throw ScalarConverter::TooBigDoubleNumberException();
         fl_num = static_cast<float>(doub_num);
-        if (checkFloatCorrectConversion(fl_num, line) == false)
-            throw ScalarConverter::TooBigFloatNumberException();
         int_num = static_cast<int>(doub_num);
         car = static_cast<char>(int_num);
         if (doub_num > INT_MAX || doub_num < INT_MIN)
@@ -131,32 +127,10 @@ bool ScalarConverter::isPseudo(const std::string &line, double& num_double, floa
     return (true);
 }
 
-bool ScalarConverter::checkDoubleCorrectConversion(double num_d, const str& line)
-{
-    std::ostringstream oss;
-    oss.precision(std::numeric_limits<double>::digits10 + 1);
-    oss << num_d;
-
-    if (oss.str() != line)
-        return (false);
-    return (true);
-}
-
-bool ScalarConverter::checkFloatCorrectConversion(float num_f, const str& line)
-{
-    std::ostringstream oss;
-    oss.precision(std::numeric_limits<float>::digits10 + 1);
-    oss << num_f;
-
-    if (oss.str() != line)
-        return (false);
-    return (true);
-}
-
 void ScalarConverter::printScalars(unsigned char car, int num, double num_double, float num_float, bool isPseudo)
 {
     std::cout << "char: ";
-    if (isPseudo == true || num < 0)
+    if (isPseudo == true || num < 0 || num > 255)
         std::cout << "impossible" << std::endl;
     else if (isPrintable(car))
         std::cout << "'" << car << "'" << std::endl;
@@ -178,16 +152,4 @@ void ScalarConverter::printScalars(unsigned char car, int num, double num_double
     else
         std::cout << std::fixed << std::setprecision(1) << num_double << std::endl; 
     return ;
-}
-
-const char* ScalarConverter::TooBigDoubleNumberException::what() const throw()
-{
-    std::cerr << "EXCEPTION CAUGHT" << std::endl;
-    return ("MOD of input value is too big for accurate precision of double variable");
-}
-
-const char* ScalarConverter::TooBigFloatNumberException::what() const throw()
-{
-    std::cerr << "EXCEPTION CAUGHT" << std::endl;
-    return ("MOD of input value is too big for accurate precision of float variable");
 }

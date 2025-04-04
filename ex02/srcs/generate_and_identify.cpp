@@ -7,7 +7,7 @@
 
 Base* generate(void)
 {
-    Base *ret_ptr;
+    Base *ret_ptr = NULL;
 
     srand(time(NULL));
     int rnd_choice = rand() % 3;
@@ -54,7 +54,7 @@ void identify(Base& p)
     std::cout << "The actual type of the object referenced by reference p - ";
     try
     {
-        dynamic_cast<A&>(p);
+        (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         return ;
     }
@@ -63,7 +63,7 @@ void identify(Base& p)
 
     try
     {
-        dynamic_cast<B&>(p);
+        (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         return ;
     }
@@ -72,7 +72,7 @@ void identify(Base& p)
 
     try
     {
-        dynamic_cast<C&>(p);
+        (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         return ;
     }
